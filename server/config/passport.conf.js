@@ -32,7 +32,24 @@ function config(passport){
 
 
     // LOGIN
-    passport.use('local-login')
+    passport.use('local-login', new LocalStrategy({}, (username, password, done)=>{
+        // Grab user by username they provide
+        pool.query("SELECT * FROM users WHERE users.username= ?", [username], (err, users)=>{
+            if(err) done(err, false, "Something went wrong. Try again later.");
+
+            if(!users[0]) done(null, false, "Invalid username or password");
+
+        
+            // Check passwords
+            bcrypt.compare(password, users[0].password, (err, matches)=>{
+                if(err) done(err, false, "Something went wrong. Try again later.");
+                // Send back user that is logged in
+                if(!matches) done(null, false, "Invalid username or password");
+
+                done(null, {username: users[0].username, id: users[0].id}, "Welcome back!");
+            })
+        })
+    }))
 
 
     // JWT
