@@ -10,3 +10,5 @@ app.use(bodyParser.json());
 app.get('*', (req, res)=> {
     res.sendFile('/dist/index.html', {root: __dirname + '/'});
 });
+
+app.listen(port, () => console.log(`Shopping List app listening on port ${port}!`));
