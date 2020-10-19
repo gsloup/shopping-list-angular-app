@@ -53,7 +53,16 @@ function config(passport){
 
 
     // JWT
-    passport.use('jwt')
+    passport.use('jwt', new JwtStrategy(opts, (jwt_payload, done)=>{
+        pool.query("SELECT * FROM users WHERE users.id = ?", [jwt_payload.id], (err, users)=>{
+            if(err) done(err, false);
+
+            if(users[0]) done(null, users[0])
+
+            done(null, false);
+            
+        })
+    }))
 }
 
 module.exports = config;
