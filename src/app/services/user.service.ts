@@ -20,6 +20,7 @@ export class UserService {
       if (res['success']) {
         this.user = res['user'];
         localStorage.setItem('token', res["jwt"]);
+        this.itemsService.itemsbyUser();
         this.router.navigate(['/shopping-list']);
       }
       console.log(res['msg']);
