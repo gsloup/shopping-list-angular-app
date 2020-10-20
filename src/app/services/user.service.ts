@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../interfaces/user.interface';
+import { ItemsService } from './items.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserService {
   private readonly _user = new BehaviorSubject<User>(null)
   readonly user$ = this._user.asObservable();
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService) { }
 
   login(username: string, password: string){
     this.http.post('/api/users/login', {username: username, password: password}).subscribe(res => {
@@ -37,8 +38,9 @@ export class UserService {
   }
 
   logout(){
-    this.user = null;
-    localStorage.removeItem('token');
+    this.user = null; // clears user state management
+    this.itemsService.clearItems(); // clears items state management
+    localStorage.removeItem('token'); // removes JWT from local storage
     this.router.navigate(['/login']);
   }
 
