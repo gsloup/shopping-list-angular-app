@@ -26,10 +26,10 @@ function removeItem(res, userId, itemId){
 // Items by user
 function itemsByUser(res, userId){
     // try to get items based off userId
-    pool.query("SELECT * FROM items WHERE items.userId = ?", [userId], (err, items)=> {
+    pool.query("SELECT * FROM items WHERE items.userId = ?", [userId], (err, results)=> {
         // send appropriate response
         if(err) return res.send({success: false, msg: 'Something went wrong, try again later'});
-        return res.send({ success: true, msg: 'Item successfully returned', items: items });
+        return res.send({ success: true, msg: 'Item successfully returned', items: results });
     })
 }
 
