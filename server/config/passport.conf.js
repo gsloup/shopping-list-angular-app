@@ -57,7 +57,7 @@ function config(passport){
         pool.query("SELECT * FROM users WHERE users.id = ?", [jwt_payload.id], (err, users)=>{
             if(err) done(err, false);
 
-            if(users[0]) done(null, users[0])
+            if(users[0]) done(null, users[0]);
 
             done(null, false);
             
