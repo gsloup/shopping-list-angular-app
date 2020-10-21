@@ -10,19 +10,20 @@ import { ItemsService } from './items.service';
 })
 export class UserService {
 
+  // STATE MANAGEMENT
   private readonly _user = new BehaviorSubject<User>(null)
   readonly user$ = this._user.asObservable();
 
   constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService) { }
 
-  // Login
+  // LOGIN
   login(username: string, password: string){
     this.http.post('/api/users/login', {username: username, password: password}).subscribe(res => {
       if (res['success']) {
         this.user = res['user'];
         
-        localStorage.setItem('token', res["jwt"]);
-        this.itemsService.itemsbyUser();
+        localStorage.setItem('token', res["jwt"]); // Will be cleared when user logs out
+        this.itemsService.itemsbyUser();           // Initial retrieval of user's items from DB
         this.router.navigate(['/shopping-list']);
       }
       console.log(res['msg']);
@@ -30,7 +31,7 @@ export class UserService {
     })  
   }
   
-  // Sign Up
+  // SIGN UP
   signup(username: string, password: string){ 
     this.http.post('/api/users/signup', {username: username, password: password}).subscribe(res => {
       if (res['success']) {
@@ -41,7 +42,7 @@ export class UserService {
     })  
   }
 
-  // Log Out
+  // LOG OUT
   logout(){
     this.user = null;                 // clears user state management
     this.itemsService.clearItems();   // clears items state management
@@ -49,7 +50,7 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  // Getters and Setters for state management
+  // USER GETTER AND SETTER
   private get user(){
     return this._user.getValue();
   }

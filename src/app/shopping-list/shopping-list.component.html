@@ -1,4 +1,4 @@
-<h2>Shopping List</h2>
+<h2>{{user}}'s Shopping List</h2>
 
 <h3>Add Items</h3>
 <label for="item">Item name</label>
@@ -10,5 +10,6 @@
 <button (click)="addItem()">Add Item</button>
 
 <div *ngFor="let item of items">
-    {{item.name}} - {{item.qty}} - {{item.price}}
+    <div>{{item.name}} - {{item.qty}} - {{item.price}}</div>
+    <button (click)=removeItem(item.id)>Remove</button>
 </div>

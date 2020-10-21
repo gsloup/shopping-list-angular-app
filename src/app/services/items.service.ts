@@ -9,30 +9,33 @@ import { catchError } from 'rxjs/operators';
 })
 export class ItemsService {
 
+  // STATE MANAGEMENT
   private readonly _items = new BehaviorSubject<Item[]>([]);
   readonly items$ = this._items.asObservable();
 
   constructor(private http: HttpClient) { }
 
+  // ADD ITEM
   addItem(name: string, quantity: number, price: number) {
-    // add jwt
+    // Add jwt
     const token = localStorage.getItem('token');
     let jwtHeader = new HttpHeaders().append('Authorization', `jwt ${token}`)
 
-    // make the request
+    // Make the request
     this.http.post('/api/items/add', {name: name, qty: quantity, price: price}, {headers: jwtHeader})
     .pipe(catchError(err => throwError('Invalid credentials, please try again')))
     .subscribe(res => {
-      // handle response and update state management as needed
+      // Handle response and update state management as needed
       if (res['success']) {
-        this.itemsbyUser();
+        this.itemsbyUser(); // Retrieves the updated items list
       }
       console.log(res['msg']);
-    }, err => console.log(err)) // error function if the observable error-ed out
+    }, err => console.log(err)) // Error function if the observable error-ed out
   }
 
+  // REMOVE ITEM
   removeItem(id: number){
-    // add jwt
+    // Add jwt
     const token = localStorage.getItem('token');
     let jwtHeader = new HttpHeaders().append('Authorization', `jwt ${token}`)
 
@@ -40,14 +43,15 @@ export class ItemsService {
     .pipe(catchError(err => throwError('Invalid credentials, please try again')))
     .subscribe(res => {
       if (res['success']) {
-
+        this.itemsbyUser(); // Retrieves the updated items list
       }
       console.log(res['msg']);
-    }, err => console.log(err)) // error function if the observable error-ed out
+    }, err => console.log(err)) // Error function if the observable error-ed out
   }
 
+  // GET ALL USER'S ITEMS
   itemsbyUser(){
-    // add jwt
+    // Add jwt
     const token = localStorage.getItem('token');
     let jwtHeader = new HttpHeaders().append('Authorization', `jwt ${token}`);
 
@@ -58,14 +62,15 @@ export class ItemsService {
         this.items = res['items'];
       }
       console.log(res['msg']);
-    }, err => console.log(err)) // error function if the observable error-ed out
+    }, err => console.log(err)) // Error function if the observable error-ed out
   }
 
-  clearItems(){ // ran when logout() is called to reset state management
+  // CLEAR ITEMS
+  clearItems(){ // Runs when logout() is called to reset state management
     this.items = [];
   }
 
-  // Items Getters and Setters
+  // ITEMS GETTER AND SETTER
   private get items(){
     return this._items.getValue();
   }
