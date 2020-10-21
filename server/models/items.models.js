@@ -1,5 +1,4 @@
 const pool = require("../config/mysql.conf");
-const { addSyntheticTrailingComment } = require("typescript");
 
 // Add item
 function addItem(res, userId, name, qty, price){
