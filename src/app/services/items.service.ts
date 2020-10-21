@@ -61,10 +61,11 @@ export class ItemsService {
     }, err => console.log(err)) // error function if the observable error-ed out
   }
 
-  clearItems(){
+  clearItems(){ // ran when logout() is called to reset state management
     this.items = [];
   }
 
+  // Items Getters and Setters
   private get items(){
     return this._items.getValue();
   }

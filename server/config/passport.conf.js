@@ -19,7 +19,7 @@ function config(passport){
             // If it's in use, tell them that it already exists
             if (users[0]) return done(null, false, "Username already in use");
 
-            bcrypt.hash(passport, 8, (err, encrypted)=>{
+            bcrypt.hash(password, 8, (err, encrypted)=>{
                 if(err) return done(err, false, "Something went wrong. Try again later");
 
                 pool.query("INSERT INTO users (username, password) VALUES (?, ?)", [username, encrypted], (err)=>{
@@ -55,11 +55,11 @@ function config(passport){
     // JWT
     passport.use('jwt', new JwtStrategy(opt, (jwt_payload, done)=>{
         pool.query("SELECT * FROM users WHERE users.id = ?", [jwt_payload.id], (err, users)=>{
-            if(err) done(err, false);
+            if(err) return done(err, false);
 
-            if(users[0]) done(null, users[0]);
+            if(users[0]) return done(null, users[0]);
 
-            done(null, false);
+            return done(null, false);
             
         })
     }))
