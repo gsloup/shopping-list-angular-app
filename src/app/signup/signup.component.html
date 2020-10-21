@@ -1,1 +1,10 @@
-<p>signup works!</p>
+<h1>Sign Up</h1>
+<form>
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" [(ngModel)]="username"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" [(ngModel)]="password">
+    <button (click)="signup()">Submit</button>
+</form>
+
+<p>Existing user? Click <a routerLink='/login'>here</a> to login </p>
