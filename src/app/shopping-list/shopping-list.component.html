@@ -10,6 +10,6 @@
 <button (click)="addItem()">Add Item</button>
 
 <div *ngFor="let item of items">
-    <div>{{item.name}} - {{item.qty}} - {{item.price}}</div>
-    <button (click)=removeItem(item.id)>Remove</button>
+    <div>{{item.name}} - {{item.qty}} - {{item.price}} <button (click)=removeItem(item.id)>Remove</button></div>
+    
 </div>
