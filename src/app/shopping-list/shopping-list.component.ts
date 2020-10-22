@@ -19,7 +19,8 @@ export class ShoppingListComponent implements OnInit {
 
   constructor(private itemService: ItemsService, private userService: UserService) { 
     this.itemService.items$.subscribe(v => this.items = v); // updates local items[] via state management 
-    this.userService.user$.subscribe(user => this.user = user.username);
+    this.userService.user$
+      .subscribe(user => this.user = user ? user.username: null); // adds ternary to fix null error when logging out
     
   }
 
