@@ -1,4 +1,4 @@
-<h2 class="text-center">{{ user }}'s Shopping List</h2>
+<h2 class="text-center pt-10">{{ user }}'s Shopping List</h2>
 
 <div class="text-center ">
     <h3>Add Items</h3>
@@ -22,3 +22,51 @@
 <div *ngFor="let item of items">
     <div>{{item.name}} - {{item.qty}} - {{item.price}} <button (click)=removeItem(item.id)>Remove</button></div>
 </div>
+
+<!-- MATERIAL DESIGN TABLE -->
+<table mat-table [dataSource]="items" class="mat-elevation-z8">
+    <!-- Item Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> name </th>
+      <td mat-cell *matCellDef="let item"> {{ item.name }} </td>
+      <td mat-footer-cell *matFooterCellDef> Grand Total </td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price per Item</th>
+        <td mat-cell *matCellDef="let item"> {{item.price | currency}} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="qty">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let item"> {{ item.qty }} </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+  
+    <!-- Total Price per specific Item Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+      <td mat-cell *matCellDef="let item"> {{item.price * item.qty | currency}} </td>
+      <td mat-footer-cell *matFooterCellDef> {{getTotalCost() | currency}} </td>
+      <!-- will need to get price * quantity then sum at bottom -->
+    </ng-container>
+
+    <!-- Remove Item Column -->
+    <ng-container matColumnDef="remove">
+        <th mat-header-cell *matHeaderCellDef> Remove </th>
+        <td mat-cell *matCellDef="let item">
+            <!-- removal button icon -->
+            <button mat-icon-button color="warn" aria-label="delete icon">
+                <mat-icon (click)=removeItem(item.id)>delete</mat-icon>
+            </button>
+        </td>
+        <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+</table>

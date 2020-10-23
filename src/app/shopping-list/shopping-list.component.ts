@@ -11,22 +11,23 @@ import { UserService } from '../services/user.service';
 })
 export class ShoppingListComponent implements OnInit {
 
-  items: Item[] = []
+  items: Item[] = []; // grabs from itemsService
   name = '';
   qty: number = 0;
   price: number = 0;
-  user: string;
+
+  user: string; // grabs from userService
+
+  // Array of table columns
+  displayedColumns: string[] = ['name', 'price', 'qty', 'total', 'remove'];
 
   constructor(private itemService: ItemsService, private userService: UserService) { 
     this.itemService.items$.subscribe(v => this.items = v); // updates local items[] via state management 
     this.userService.user$
       .subscribe(user => this.user = user ? user.username: null); // adds ternary to fix null error when logging out
-    
   }
 
-  ngOnInit(): void {
-  }
-
+  // Add Item to table
   addItem(){
     this.itemService.addItem(this.name, this.qty, this.price);
     this.name = '';
@@ -34,8 +35,17 @@ export class ShoppingListComponent implements OnInit {
     this.price = 0;
   }
 
+  // Remove item from table
   removeItem(id){
     this.itemService.removeItem(id);
   }
 
+
+  // Get the total cost of all transactions
+  getTotalCost() {
+    return this.items.map(t => t.price * t.qty).reduce((acc, value) => acc + value, 0);
+  }
+
+  ngOnInit(): void {
+  }
 }
