@@ -3,6 +3,14 @@ table {
     margin-top: 20px;
     width: calc(100% - 40px);
 }
+@media only screen and (max-width: 500px) {
+    table {
+        width: 100%;
+    }
+    #total-column {
+        text-align: center;
+    }
+  }
 
 tr.mat-footer-row {
     font-weight: bold;

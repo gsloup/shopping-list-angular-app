@@ -1,7 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #e07a5f; // main background color
+}
+
+.component {
+    background-color: #f4f1de; // component background color
+}
+.auth-div {
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+}
 
 .text-center {
     text-align: center;
@@ -20,4 +34,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .pt-10 {
     padding-top: 10px;
+}
+
+.pb-30 {
+    padding-bottom: 30px;
 }

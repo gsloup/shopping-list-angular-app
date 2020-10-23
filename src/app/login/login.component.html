@@ -1,15 +1,17 @@
-<h1 class="text-center pt-10">Login</h1>
-<form>
-    <div class="text-left margin-auto width-255">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" [(ngModel)]="username"><br>
+<div class="component auth-div">
+    <h1 class="text-center pt-10">Login</h1>
+    <form class="pb-30">
+        <div class="text-left margin-auto width-255">
+            <label for="username">Username:</label><br>
+            <input type="text" id="username" name="username" [(ngModel)]="username"><br>
 
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" [(ngModel)]="password">
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" [(ngModel)]="password">
 
-        <button (click)="login()">Submit</button>
-        
-        <p class="pt-10">New user? Click <a routerLink='/signup'>here</a> to sign up</p>
-    </div>
-</form>
+            <button (click)="login()">Submit</button>
+            
+            <p class="pt-10">New user? Click <a routerLink='/signup'>here</a> to sign up</p>
+        </div>
+    </form>
+</div>
 
