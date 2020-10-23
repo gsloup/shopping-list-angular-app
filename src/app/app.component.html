@@ -1,9 +1,7 @@
 <mat-toolbar>
     <span>Shopping List Generator</span>
+    <span class="spacer"></span>
     <button *ngIf='user' (click)=logout()>Log Out</button>
 </mat-toolbar>
-<h1>Shopping List</h1>
-
-
 
 <router-outlet></router-outlet>
