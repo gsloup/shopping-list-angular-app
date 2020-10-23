@@ -42,11 +42,11 @@ function config(passport){
         
             // Check passwords
             bcrypt.compare(password, users[0].password, (err, matches)=>{
-                if(err) done(err, false, "Something went wrong. Try again later.");
+                if(err) return done(err, false, "Something went wrong. Try again later.");
                 // Send back user that is logged in
-                if(!matches) done(null, false, "Invalid username or password");
+                if(!matches) return done(null, false, "Invalid username or password");
 
-                done(null, {username: users[0].username, id: users[0].id}, "Welcome back!");
+                return done(null, {username: users[0].username, id: users[0].id}, "Welcome back!");
             })
         })
     }))
