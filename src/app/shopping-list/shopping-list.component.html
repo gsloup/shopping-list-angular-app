@@ -3,13 +3,19 @@
 <div class="text-center ">
     <h3>Add Items</h3>
     <div class="text-left margin-auto width-250">
-        <label for="item">Item name </label>
-        <input type="text" id="item" [(ngModel)]="name"><br>
-        <label for="qty">Quantity </label>
-        <input type="number" id="qty" [(ngModel)]="qty"><br>
-        <label for="price">Price </label>
-        <input type="number" id="price" [(ngModel)]="price"><br>
-        <div class="text-right"><button (click)="addItem()" >Add Item</button></div>
+        <div>
+            <label for="item">Item name </label>
+            <input type="text" id="item" [(ngModel)]="name"><br>
+        </div>
+        <div class="pt-10">
+            <label for="qty">Quantity </label>
+            <input type="number" id="qty" [(ngModel)]="qty"><br>
+        </div>
+        <div class="pt-10">
+            <label for="price">Price $</label>
+            <input type="number" id="price" [(ngModel)]="price"><br>
+        </div>
+        <div class="text-right pt-10"><button (click)="addItem()">Add Item</button></div>
     </div>
 </div>
 
