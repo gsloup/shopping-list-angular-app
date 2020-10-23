@@ -29,6 +29,9 @@ export class ShoppingListComponent implements OnInit {
 
   addItem(){
     this.itemService.addItem(this.name, this.qty, this.price);
+    this.name = '';
+    this.qty = 0;
+    this.price = 0;
   }
 
   removeItem(id){
