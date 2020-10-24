@@ -30,7 +30,6 @@ export class ItemsService {
       if (res['success']) {
         this.itemsbyUser(); // Retrieves the updated items list
       }
-      console.log(res['msg']);
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, {
         duration: 1500,
@@ -50,7 +49,6 @@ export class ItemsService {
       if (res['success']) {
         this.itemsbyUser(); // Retrieves the updated items list
       }
-      console.log(res['msg']);
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, {
         duration: 1500,
@@ -70,7 +68,6 @@ export class ItemsService {
       if (res['success']) {
         this.items = res['items'];
       }
-      console.log(res['msg']);
     }, err => console.log(err)) // Error function if the observable error-ed out
   }
 

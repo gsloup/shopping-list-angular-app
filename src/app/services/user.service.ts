@@ -27,7 +27,6 @@ export class UserService {
         this.itemsService.itemsbyUser();           // Initial retrieval of user's items from DB
         this.router.navigate(['/shopping-list']);
       }
-      console.log(res['msg']);
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, {
         duration: 1500,
@@ -41,7 +40,6 @@ export class UserService {
       if (res['success']) {
         this.router.navigate(['/login']);
       }
-      console.log(res['msg']);
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, { 
         duration: 1500,

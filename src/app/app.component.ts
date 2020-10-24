@@ -15,6 +15,7 @@ export class AppComponent {
     // Will display a logout button if a user is present
     this.userService.user$.subscribe(user => this.user = user);
   }
+  
   logout() {
     this.userService.logout();
   }

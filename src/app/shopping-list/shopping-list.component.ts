@@ -11,12 +11,12 @@ import { UserService } from '../services/user.service';
 })
 export class ShoppingListComponent implements OnInit {
 
-  items: Item[] = []; // grabs from itemsService
+  items: Item[] = []; // Stores items from itemsService and will fill table
   name = '';
   qty: number = 0;
   price: number = 0;
 
-  user: string; // grabs from userService
+  user: string;
 
   // Array of table columns
   displayedColumns: string[] = ['name', 'price', 'qty', 'total', 'remove'];
@@ -30,6 +30,7 @@ export class ShoppingListComponent implements OnInit {
   // Add Item to table
   addItem(){
     this.itemService.addItem(this.name, this.qty, this.price);
+    // Resets the input data on the form
     this.name = '';
     this.qty = 0;
     this.price = 0;
@@ -41,7 +42,7 @@ export class ShoppingListComponent implements OnInit {
   }
 
 
-  // Get the total cost of all transactions
+  // Get the total cost of all quantitized items
   getTotalCost() {
     return this.items.map(t => t.price * t.qty).reduce((acc, value) => acc + value, 0);
   }

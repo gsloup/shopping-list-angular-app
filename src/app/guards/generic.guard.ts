@@ -12,8 +12,6 @@ export class GenericGuard implements CanActivate {
 
   constructor(private userService: UserService, private router: Router){
     this.userService.user$.subscribe(user => this.user = user ? user.username: null)
-    console.log(this.user);
-    
   }
 
   canActivate(
