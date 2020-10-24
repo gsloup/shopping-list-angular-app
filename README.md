@@ -15,7 +15,7 @@ Uses a MySQL database and is hosted on Heroku.
 
 ## Security
 
-- Passwords are hashed using bcrypt before stored in database and remains unknown/inaccessable to the developer (me).
+- Passwords are hashed before stored in database and remains unknown/inaccessable to the developer (me).
 - SSL certificate on web page to provide end-to-end encryption.
 - Auth Guards are in place to keep unauthorized users from accessing certain url endpoints.
 - JWT (JSON Web Tokens) are created and later deleted for each session, to ensure that only the user may create, read, update, or delete their shopping-list data.
