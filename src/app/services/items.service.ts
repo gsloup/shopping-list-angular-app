@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { Item } from '../interfaces/item.interface';
 import { catchError } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class ItemsService {
   private readonly _items = new BehaviorSubject<Item[]>([]);
   readonly items$ = this._items.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private _snackBar: MatSnackBar) { }
 
   // ADD ITEM
   addItem(name: string, quantity: number, price: number) {
@@ -30,6 +31,10 @@ export class ItemsService {
         this.itemsbyUser(); // Retrieves the updated items list
       }
       console.log(res['msg']);
+      // Give user appropriate message using a snack bar
+      this._snackBar.open(res['msg'], null, {
+        duration: 1500,
+      });      
     }, err => console.log(err)) // Error function if the observable error-ed out
   }
 
@@ -46,6 +51,10 @@ export class ItemsService {
         this.itemsbyUser(); // Retrieves the updated items list
       }
       console.log(res['msg']);
+      // Give user appropriate message using a snack bar
+      this._snackBar.open(res['msg'], null, {
+        duration: 1500,
+      });      
     }, err => console.log(err)) // Error function if the observable error-ed out
   }
 

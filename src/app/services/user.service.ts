@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { User } from '../interfaces/user.interface';
 import { ItemsService } from './items.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
   private readonly _user = new BehaviorSubject<User>(null)
   readonly user$ = this._user.asObservable();
 
-  constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService) { }
+  constructor(private router: Router, private http: HttpClient, private itemsService: ItemsService, private _snackBar: MatSnackBar) { }
 
   // LOGIN
   login(username: string, password: string){
@@ -27,7 +28,10 @@ export class UserService {
         this.router.navigate(['/shopping-list']);
       }
       console.log(res['msg']);
-    
+      // Give user appropriate message using a snack bar
+      this._snackBar.open(res['msg'], null, {
+        duration: 1500,
+      });
     })  
   }
   
@@ -38,7 +42,10 @@ export class UserService {
         this.router.navigate(['/login']);
       }
       console.log(res['msg']);
-    
+      // Give user appropriate message using a snack bar
+      this._snackBar.open(res['msg'], null, { 
+        duration: 1500,
+      });
     })  
   }
 
