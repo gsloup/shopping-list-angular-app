@@ -1,27 +1,29 @@
-# ShoppingListAngApp
+# Shopping List Generator
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.2.
+Link to the project: https://shopping-list-organizer.herokuapp.com/signup 
 
-## Development server
+This project was built in Angular version 10.1.2.
+Uses a MySQL database and is hosted on Heroku.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Main Features
 
-## Code scaffolding
+- Users can create an account and securely log in to be redirected to a shopping list generator.
+- Within the shopping list, the user can add specific items along with the quantity and price.
+- Table displays the items and calculates the relative price of the item and the grand total so that the user can track their budget.
+- User can delete specific items from the list
+- Data is stored in MySQL database, so the user can log out and come back to the info later.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Security
 
-## Build
+- Passwords are hashed using bcrypt before stored in database and unknown to the developer (me).
+- Auth Guards are in place to keep unauthorized users from accessing certain url endpoints.
+- JWT (JSON Web Tokens) are created and later deleted for each session, to ensure that only the user may create, read, update, or delete shopping-list data.
+- SQL queries have parameterized statements to help prevent SQL injections.
+- Database config variables are safely hidden to those searching the source code.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Other Features
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- Responsive UI that can be viewed on both mobile and desktop.
+- Material design, clean UI, and a matching color palette create a pleasant user experience.
+- Pipes used to help better display certain data.
+- Interfaces created to easily manipulate, use, and package SQL data.
