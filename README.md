@@ -3,6 +3,7 @@
 Link to the hosted project: <a href="https://shopping-list-organizer.herokuapp.com/signup" target="_blank">Shopping List Generator</a>
 
 This project was built in Angular 10.
+
 Uses a MySQL database and is hosted on Heroku.
 
 ## Main Features
