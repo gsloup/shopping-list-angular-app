@@ -3,6 +3,7 @@
 Link to the hosted project: <a href="https://shopping-list-organizer.herokuapp.com/signup" target="_blank">Shopping List Generator</a>
 
 This project was built in Angular 10.
+
 Uses a MySQL database and is hosted on Heroku.
 
 ## Main Features
@@ -11,7 +12,7 @@ Uses a MySQL database and is hosted on Heroku.
 - Within the shopping list, the user can add specific items along with the quantity and price.
 - Table displays the items and calculates the relative price of the item and grand total so that the user can track their budget.
 - User can delete specific items from the list
-- Data is stored in MySQL database, so the user can log out and come back to the info later.
+- Data is stored in a MySQL database, so the user can log out and come back to the info later.
 
 ## Security
 
