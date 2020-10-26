@@ -29,7 +29,7 @@ export class UserService {
       }
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, {
-        duration: 1500,
+        duration: 2500,
       });
     })  
   }
@@ -38,11 +38,11 @@ export class UserService {
   signup(username: string, password: string){ 
     this.http.post('/api/users/signup', {username: username, password: password}).subscribe(res => {
       if (res['success']) {
-        this.router.navigate(['/login']);
+        this.login(username, password); // automatically logs in new user if successfully signs up
       }
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, { 
-        duration: 1500,
+        duration: 3500,
       });
     })  
   }

@@ -10,7 +10,8 @@ router.post('/signup', (req, res)=> {
     const password = req.body.password;
     if(!username || username.length < 2 || username.length > 20 ||
         !password || password.length < 8 || password.length > 20) {
-            return res.send({success: false, msg: 'Invalid user information'})
+            return res.send({success: false, 
+                msg: 'Invalid user information. Usernames between 2 & 20 characters and passwords between 8 & 20 characters.'})
     }
     passport.authenticate('local-signup', (err, user, info)=>{
         // if there's a user send a success response
@@ -28,7 +29,8 @@ router.post('/login', (req, res)=> {
     const password = req.body.password;
     if(!username || username.length < 2 || username.length > 20 ||
         !password || password.length < 8 || password.length > 20) {
-            return res.send({success: false, msg: 'Invalid user information'})
+            return res.send({success: false, 
+                msg: 'Invalid user information.'})
     }
     passport.authenticate('local-login', (err, user, info)=>{
         // if there's a user, create jwt and send a success response

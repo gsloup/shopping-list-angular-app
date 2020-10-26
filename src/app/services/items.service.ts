@@ -32,7 +32,7 @@ export class ItemsService {
       }
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, {
-        duration: 1500,
+        duration: 2000,
       });      
     }, err => console.log(err)) // Error function if the observable error-ed out
   }
@@ -51,7 +51,7 @@ export class ItemsService {
       }
       // Give user appropriate message using a snack bar
       this._snackBar.open(res['msg'], null, {
-        duration: 1500,
+        duration: 2000,
       });      
     }, err => console.log(err)) // Error function if the observable error-ed out
   }
