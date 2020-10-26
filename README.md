@@ -8,7 +8,7 @@ Uses a MySQL database and is hosted on Heroku.
 
 ## Main Features
 
-- Users can create an account and securely log in to be redirected to a shopping list generator.
+- Users can create an account, securely log in, and be redirected to a shopping list generator.
 - Within the shopping list, the user can add specific items along with the quantity and price.
 - Table displays the items and calculates the relative price of the item and grand total so that the user can track their budget.
 - User can delete specific items from the list
